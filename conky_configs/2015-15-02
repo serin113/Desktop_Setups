@@ -1,0 +1,100 @@
+alignment top_right
+background yes
+border_inner_margin 7
+border_width 1
+cpu_avg_samples 1
+default_color 4C7F82
+default_outline_color 444444
+default_shade_color 557788
+double_buffer yes
+draw_borders no
+draw_graph_borders yes
+draw_outline no
+draw_shades no
+format_human_readable
+use_xft yes
+#xftfont Monospace:size=10
+#xftfont Lucida Console:size=10
+#xftfont Clean:size=11
+#xftfont Orator Std:size=10
+#xftfont Inconsolata:size=10
+#xftfont Oxygen Mono:size=10
+xftfont monofur:size=11.25
+gap_x 160
+gap_y 330
+minimum_size 600 0
+maximum_width 600
+max_user_text 32768
+net_avg_samples 1
+no_buffers yes
+out_to_console no
+out_to_stderr no
+extra_newline no
+own_window yes
+own_window_class Conky
+own_window_type window
+own_window_transparent yes
+own_window_colour 070707
+own_window_argb_visual yes
+own_window_argb_value 130
+own_window_hints undecorated,below,sticky,skip_taskbar,skip_pager
+short_units yes
+stippled_borders 1
+update_interval 1.0
+update_interval_on_battery 3.0
+uppercase no
+use_spacer left
+show_graph_scale no
+show_graph_range no
+text_buffer_size 2048
+total_run_times 0
+
+color1 EB864E #main highlight
+color2 9DE0D6 #2nd highlight
+color3 7DB297 #3rd highlight
+color6 4C7F82 #timezones
+color7 223333 #horizontal lines
+
+TEXT
+${color1}$nodename
+$color2${tztime Asia/Manila %a, %d %b %Y, %I:%M %p}
+${color}running for $color3$uptime_short
+#
+#Main Division
+#
+${color7}$hr
+
+#
+#Left Block
+#
+${color1}now playing${if_running amarok}${color}
+${color2}${execpi 2 ~/scripts/song title 33}${color}
+by ${color3}${execpi 2 ~/scripts/song artist 30}${color}
+on ${color3}${execpi 2 ~/scripts/song album 30}${else}
+${color}nothing :(
+
+${endif}
+${color7}$hr
+
+${color1}pst${color6} ${tztime PST8PDT %a, %d %b %y, %I:%M %p}
+${color1}utc${color6} ${tztime UTC %a, %d %b %y, %I:%M %p}
+${color1}bzl${color6} ${tztime Brazil/East %a, %d %b %y, %I:%M %p}
+${color7}$hr
+#
+#Right Block
+#
+${voffset -176}
+${goto 297}${color1}process            pid     cpu      mem
+${goto 297}${color2}${top name 1} $color${top pid 1} ${top cpu 1}%  ${top mem 1}%
+${goto 297}${color3}${top name 2} $color${top pid 2} ${top cpu 2}%  ${top mem 2}%
+${goto 297}${color3}${top name 3} $color${top pid 3} ${top cpu 3}%  ${top mem 3}%
+${goto 297}${color7}$hr
+
+${goto 297}${color1}cpu ${color}$cpu%  ${color1}ram ${color}$memperc%  ${color1}swap ${color}$swapperc%
+${goto 297}${color1}down ${color}${downspeed wlp3s0}  ${color1}up ${color}${upspeed wlp3s0}
+${goto 297}${color1}disk $color${fs_free_perc /}% (${fs_free /}) free
+${goto 297}${color7}$hr
+
+${color1}notes
+${color}${execpi 3 less ~/notes}${if_empty ${execpi 3 less ~/notes}}\
+${color3}nothing :(${endif}
