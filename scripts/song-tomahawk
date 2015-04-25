@@ -1,0 +1,45 @@
+#!/bin/bash
+
+QDBUS="qdbus org.mpris.MediaPlayer2.tomahawk"
+TRACK=`$QDBUS /TrackList org.freedesktop.MediaPlayer.GetCurrentTrack`
+LEN=$2
+
+case "$1" in
+
+# Now Playing Info
+#artist) ARTIST=`$QDBUS /TrackList org.freedesktop.MediaPlayer.GetMetadata $TRACK | sort -r | egrep "^(artist:)" | sed -e "s/^.*: //g"`
+artist) ARTIST=`$QDBUS /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Metadata | egrep "^(xesam:artist: )" | sed -e "s/^.*: //g"`
+
+# org.mpris.MediaPlayer2.vlc
+# org.mpris.MediaPlayer2.tomahawk
+# org.mpris.amarok
+
+if [ ${#ARTIST} -gt $LEN ]; then 
+    echo $ARTIST | head -c $[$LEN-3] 
+    echo "..."
+else 
+    echo $ARTIST
+fi
+;;
+
+#title) TITLE=`$QDBUS /TrackList org.freedesktop.MediaPlayer.GetMetadata $TRACK | sort -r | egrep "^(title:)" | sed -e "s/^.*: //g"`
+title) TITLE=`$QDBUS /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Metadata | egrep "^(xesam:title: )" | sed -e "s/^.*: //g"`
+if [ ${#TITLE} -gt $LEN ]; then 
+    echo $TITLE | head -c $[$LEN-3] 
+    echo "..."
+else 
+    echo $TITLE
+fi
+;;
+
+#album) ALBUM=`$QDBUS /TrackList org.freedesktop.MediaPlayer.GetMetadata $TRACK | sort -r | egrep "^(album:)" | sed -e "s/^.*: //g"`
+album) ALBUM=`$QDBUS /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Metadata | egrep "^(xesam:album: )" | sed -e "s/^.*: //g"`
+if [ ${#ALBUM} -gt $LEN ]; then 
+    echo $ALBUM | head -c $[$LEN-3] 
+    echo "..."
+else 
+    echo $ALBUM
+fi
+;;
+
+esac
