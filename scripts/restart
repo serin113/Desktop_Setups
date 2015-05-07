@@ -1,0 +1,14 @@
+#!/bin/sh
+nohup notify-send "Restarting processes..."
+nohup conky &
+nohup conky -c /home/serin/.conkystatrc &
+nohup megasync &
+nohup octopi-notifier &
+nohup redshift-gtk &
+sudo -b systemctl start mysqld.service
+sudo -b systemctl start org.cups.cupsd.service &
+nohup notify-send "Processes restarted."
+# nohup xfconf-query -c xfwm4 -p /general/use_compositing -t bool -s true
+nohup compton -b &
+nohup notify-send "Compositing enabled."
+exit

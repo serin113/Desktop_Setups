@@ -1,0 +1,5 @@
+#!/bin/sh
+notify-send --expire-bime=1000 "scrot" "Taking screenshot..." --icon=dialog-information
+scrot '%d-%b-%y_%T_scrot.png' -e 'mv $f ~/Pictures/Screenshots/' -c 1
+sleep 1
+notify-send --expire-time=3000 "scrot" "Screenshot taken." --icon=dialog-information

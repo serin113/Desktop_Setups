@@ -1,0 +1,39 @@
+#!/bin/bash
+
+LEN=$2
+
+case "$1" in
+
+# Now Playing Info
+artist) ARTIST=`deadbeef --nowplaying "%a"`
+
+if [ ${#ARTIST} -gt $LEN ]; then 
+    echo $ARTIST | head -c $[$LEN-3] 
+    echo "..."
+else 
+    echo -en "$ARTIST"
+#    for ((i=0; i< ($LEN - ${#ARTIST}); i++)){ echo -n " "; }
+fi
+;;
+
+title) TITLE=`deadbeef --nowplaying "%t"`
+if [ ${#TITLE} -gt $LEN ]; then 
+    echo $TITLE | head -c $[$LEN-3] 
+    echo "..."
+else
+#    for ((i=0; i< ($LEN - ${#TITLE}); i++)){ echo -n " "; }
+    echo -en "$TITLE"
+fi
+;;
+
+album) ALBUM=`deadbeef --nowplaying "%b"`
+if [ ${#ALBUM} -gt $LEN ]; then 
+    echo $ALBUM | head -c $[$LEN-3] 
+    echo "..."
+else 
+#    for ((i=0; i< ($LEN - ${#ALBUM}); i++)){ echo -n " "; }
+    echo -en "$ALBUM"
+fi
+;;
+
+esac

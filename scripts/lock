@@ -1,0 +1,23 @@
+#!/bin/bash
+ 
+# Dependencies:
+# imagemagick
+# i3lock-color-git
+# scrot
+ 
+IMAGE=/tmp/i3lock.png
+ 
+# All options are here: http://www.imagemagick.org/Usage/blur/#blur_args
+#BLURTYPE="0x5" # 7.52s
+#BLURTYPE="0x2" # 4.39s
+BLURTYPE="5x3" # 3.80s
+#BLURTYPE="2x8" # 2.90s
+#BLURTYPE="2x3" # 2.92s
+
+scrot $IMAGE
+#convert $IMAGE -blur $BLURTYPE $IMAGE
+#convert $IMAGE -level 0%,100%,0.6 -blur $BLURTYPE -font Open-Sans -pointsize 26 -weight bold -fill white -gravity center -annotate +0+200 'locked' $IMAGE
+convert $IMAGE -fill '#444444' -colorize 93% -blur $BLURTYPE -font Ubuntu -pointsize 35 -weight bold -fill white -gravity center -annotate +0+200 'locked' - | composite -gravity center /home/serin/scripts/lock.png - $IMAGE
+i3lock -e -p default -i $IMAGE
+rm $IMAGE
+exit

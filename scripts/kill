@@ -1,0 +1,14 @@
+#!/bin/sh
+nohup notify-send "Killing processes..."
+killall conky
+killall megasync
+killall octopi-notifier
+killall redshift
+nohup redshift -x
+sudo -b systemctl stop mysqld.service
+sudo -b systemctl stop org.cups.cupsd.service &
+nohup notify-send "Processes killed."
+# nohup xfconf-query -c xfwm4 -p /general/use_compositing -t bool -s false
+killall compton
+nohup notify-send "Compositing disabled."
+exit

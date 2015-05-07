@@ -1,0 +1,4 @@
+#!/bin/sh
+notify-send "reflector" "Updating mirrorlist..."
+reflector --verbose -l 200 -p http --sort rate --save /etc/pacman.d/mirrorlist
+notify-send "reflector" "mirrorlist updated."
