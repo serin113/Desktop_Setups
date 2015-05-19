@@ -1,23 +1,19 @@
 #!/usr/bin/perl
 #Script Name: howLong.pl
-#Author: Nathan Handler <nhandler @ubuntu.com>
- 
+#Author: Nathan Handler <nhandler@ubuntu.com>
+
 use strict;
 use warnings;
 use Date::Manip;
- 
-my $target=$ARGV[0] || "February 2, 2014";
-my $delta = DateCalc(ParseDate($target),ParseDate("now"),1);
- 
-$delta=~s/^[+-]//;
-my($y,$m,$w,$d) = split(/:/,$delta,4);
 
-$y = sprintf("%02d", $y);
-$m = sprintf("%02d", $m);
-$w = sprintf("%02d", $w);
-$d = sprintf("%02d", $d);
- 
+my $target=$ARGV[0] || "Tue, 14 Jul 2015 11:49:57 UTC";
+my $delta = DateCalc(ParseDate("today"),ParseDate($target),1);
+
+$delta=~s/^[+-]//;
+my($y,$m,$w,$d,$h,$min,$s) = split(/:/,$delta,7);
+
 print $y . "y " if($y>0);
 print $m . "m " if($m>0);
 print $w . "w " if($w>0);
 print $d . "d " if($d>0);
+print "$h:$min:$s" if($h>0||$min>0||$s>0);

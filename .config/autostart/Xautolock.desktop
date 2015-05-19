@@ -1,0 +1,12 @@
+[Desktop Entry]
+Encoding=UTF-8
+Version=0.9.4
+Type=Application
+Name=Xautolock
+Comment=lock after 5 minutes
+Exec=xautolock -time 5 -locker /home/serin/scripts/lock
+OnlyShowIn=XFCE;
+StartupNotify=false
+Terminal=false
+Hidden=false
+

@@ -1,0 +1,18 @@
+[Desktop Entry]
+Comment=
+Exec=ksuperkey
+GenericName=
+Icon=system-run
+MimeType=
+Name=
+Path=
+StartupNotify=true
+Terminal=false
+TerminalOptions=
+Type=Application
+X-DBUS-ServiceName=
+X-DBUS-StartupType=
+X-KDE-SubstituteUID=false
+X-KDE-Username=
+Hidden=true
+

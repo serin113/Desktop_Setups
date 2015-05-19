@@ -1,0 +1,21 @@
+[Desktop Entry]
+Comment=
+Comment[en_IN]=
+Exec=conky
+GenericName=
+Hidden=false
+MimeType=
+Name=Conky
+Name[en_IN]=Conky
+NoDisplay=false
+Path=
+StartupNotify=true
+Terminal=false
+TerminalOptions=
+Type=Application
+X-DBUS-ServiceName=
+X-DBUS-StartupType=
+X-GNOME-Autostart-enabled=true
+X-KDE-SubstituteUID=false
+X-KDE-Username=
+
